@@ -1,0 +1,53 @@
+
+.button {
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(45, 35, 66, 0.4), 0px 7px 13px -3px rgba(45, 35, 66, 0.3), inset 0px -3px 0px #C1C1C159;
+  padding: 10px 0;
+  transition: 0.2s ease;
+  transition-property: box-shadow, transform;
+  color: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: inline-block;
+  user-select: none;
+}
+.button:hover{
+  box-shadow: 0px 4px 8px rgba(45, 35, 66, 0.4), 0px 7px 13px -3px rgba(45, 35, 66, 0.3), inset 0px -3px 0px #BBBBBB80;
+  transform: translateY(-2px);
+}
+.button:active{
+  box-shadow: inset 0px 3px 7px #73737375;
+  transform: translateY(2px);
+}
+
+.button--primary {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+  color: var(--text-light);
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.button--disabled,
+.button:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.button--large {
+  font-size: 20px;
+  padding: 15px 20px;
+}
