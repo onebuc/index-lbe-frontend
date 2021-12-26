@@ -6,14 +6,13 @@ This is the frontend for Index DAO LBE.
 
 Required:
 - [Node v14](https://nodejs.org/download/release/latest-v14.x/)  
-- [Yarn](https://classic.yarnpkg.com/en/docs/install/)
 - [Git](https://git-scm.com/downloads)
 
 
 ```bash
-git clone https://github.com/indexdao/index-website.git
+git clone https://github.com/indexdao/index-lbe-frontend.git
 cd index-website
-yarn install
+npm install
 npm run start
 ```
 
