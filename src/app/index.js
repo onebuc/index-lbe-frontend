@@ -491,6 +491,7 @@ class App extends React.Component {
     const can_claim = this.canClaim();
     const can_invest = this.canInvest();
     const is_sold_out = this.isSoldOut();
+    const now = Date.now();
 
     return (
       <div className={styles.root}>
@@ -501,27 +502,37 @@ class App extends React.Component {
         <div className={styles["modal-wrapper"]}>
           <div className={styles.modal}>
             <div className={styles.modal__title}>
-              <div className={styles["pulse-dot"]}></div>
+              {now >= 1641207600325 && (
+                <div className={styles["pulse-dot"]}></div>
+              )}
               <h2>Index DAO Seed Round</h2>
             </div>
 
-            <div className={styles.modal__subtitle}>
-              {state.sale_data.is_claim_period && (
-                <p>INDEX IS NOW CLAIMABLE</p>
-              )}
+            {now >= 1641207600325 && (
+              <div className={styles.modal__subtitle}>
+                {state.sale_data.is_claim_period && (
+                  <p>INDEX IS NOW CLAIMABLE</p>
+                )}
 
-              {!state.sale_data.is_claim_period && (
-                <React.Fragment>
-                  {state.sale_data.is_private_sale && (
-                    <p>CURRENT ACTIVE SALE: WHITELIST</p>
-                  )}
+                {!state.sale_data.is_claim_period && (
+                  <React.Fragment>
+                    {state.sale_data.is_private_sale && (
+                      <p>CURRENT ACTIVE SALE: WHITELIST</p>
+                    )}
 
-                  {state.sale_data.is_public_sale && (
-                    <p>CURRENT ACTIVE SALE: PUBLIC</p>
-                  )}
-                </React.Fragment>
-              )}
-            </div>
+                    {state.sale_data.is_public_sale && (
+                      <p>CURRENT ACTIVE SALE: PUBLIC</p>
+                    )}
+                  </React.Fragment>
+                )}
+              </div>
+            )}
+
+            {now < 1641207600325 && (
+              <div className={styles.modal__subtitle}>
+                <p>SALE WILL LAUNCH AT 11:00 UTC</p>
+              </div>
+            )}
 
             <div>
               <div className={styles.totals}>
@@ -666,7 +677,8 @@ class App extends React.Component {
 
               {(
                 !state.loading &&
-                state.account !== undefined
+                state.account !== undefined &&
+                now >= 1641207600325
               ) && (
                 <div className={styles.notes}>
                   {!state.sale_data.is_claim_period && (
@@ -720,6 +732,12 @@ class App extends React.Component {
                   {state.sale_data.is_claim_period && (
                     <p>📈 Your INDEX is now claimable! Click the claim button below to receive your INDEX and begin your journey in decentralized diversification!</p>
                   )}
+                </div>
+              )}
+
+              {now < 1641207600325 && (
+                <div className={styles.notes}>
+                  <p>The INDEX sale will commence at 11:00 UTC! All whitelist address will be added then.</p>
                 </div>
               )}
             </div>
