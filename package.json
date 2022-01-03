@@ -1,6 +1,6 @@
 {
   "name": "index-lbe-frontend",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "dependencies": {
     "dotenv": "^10.0.0",

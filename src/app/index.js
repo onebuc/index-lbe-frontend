@@ -399,6 +399,10 @@ class App extends React.Component {
               return;
             }
 
+            try {
+              this.fetchAllowance();
+            } catch (error) {} // Ignore error
+
             this.setState({ loading: false });
             toast.success("Transaction successful!", { autoClose: 15000 });
 
