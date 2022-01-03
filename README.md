@@ -1,4 +1,4 @@
-# [Index DAO Liquidity Bootstrapping Event Frontend](https://lbe.indexdao.finance/)
+# [Index DAO Liquidity Bootstrapping Event Frontend](https://launch.indexdao.finance/)
 
 This is the frontend for Index DAO LBE.
 
