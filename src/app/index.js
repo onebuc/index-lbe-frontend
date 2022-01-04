@@ -212,7 +212,7 @@ class App extends React.Component {
   }
 
   async fetchSaleData() {
-    return new Promise((resolve) => {
+    return new Promise(async (resolve) => {
       if (this.state.account) {
         Promise.all([
           contracts.indexsale.contract.methods.privateSalePrice().call(),
@@ -221,7 +221,8 @@ class App extends React.Component {
           }),
           contracts.indexsale.contract.methods.amountBuyable(this.state.account).call().then((value) => {
             return parseFloat(applyDecimals(value, contracts.index.decimals));
-          }),
+          })
+          .catch(error => { return 200 }),
           contracts.indexsale.contract.methods.approvedBuyers(this.state.account).call(),
           contracts.indexsale.contract.methods.MAX_SOLD().call().then((max_sold) => {
             return parseFloat(applyDecimals(max_sold, contracts.index.decimals));
