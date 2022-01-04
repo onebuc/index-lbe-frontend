@@ -212,7 +212,7 @@ class App extends React.Component {
   }
 
   async fetchSaleData() {
-    return new Promise(async (resolve) => {
+    return new Promise((resolve) => {
       if (this.state.account) {
         Promise.all([
           contracts.indexsale.contract.methods.privateSalePrice().call(),
