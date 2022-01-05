@@ -248,12 +248,13 @@ class App extends React.Component {
             deposited: data[7] || 0,
             index_address: data[6],
             is_claim_period: data[11],
+            is_closed: data[4] < 100000,
             is_private_sale: !data[8],
             is_public_sale: data[8],
             is_whitelisted: data[3],
             max_private_sale_per_account: data[1],
             max_public_sale_per_account: data[10],
-            max_sold: data[4],
+            max_sold: data[4] < 100000 ? 100000 : data[4],
             price: data[8] ? data[9] : data[0],
             price_in_mim: data[8] ? (data[9] * (10 ** contracts.index.decimals) / (10 ** contracts.mim.decimals)) : (data[0] * (10 ** contracts.index.decimals) / (10 ** contracts.mim.decimals)),
             sold: data[5],
@@ -273,7 +274,8 @@ class App extends React.Component {
           } else if (
             this.state.initialized_amount === false &&
             sale_data.is_public_sale &&
-            !sale_data.is_whitelisted
+            !sale_data.is_whitelisted &&
+            !sale_data.is_closed
           ) {
             this.setState({
               amount_index: sale_data.max_public_sale_per_account,
@@ -442,6 +444,7 @@ class App extends React.Component {
     if (
       !state.loading && // Isn't loading
       !state.sale_data.is_claim_period && // Isn't claim period
+      !state.sale_data.is_closed && // Sale isn't closed
       (
         (
           state.sale_data.is_public_sale && // Is public sale
@@ -503,7 +506,10 @@ class App extends React.Component {
         <div className={styles["modal-wrapper"]}>
           <div className={styles.modal}>
             <div className={styles.modal__title}>
-              {now >= 1641207600325 && (
+              {(
+                now >= 1641207600325 &&
+                state.sale_data.is_closed === false
+              ) && (
                 <div className={styles["pulse-dot"]}></div>
               )}
               <h2>Index DAO Seed Round</h2>
@@ -517,12 +523,20 @@ class App extends React.Component {
 
                 {!state.sale_data.is_claim_period && (
                   <React.Fragment>
-                    {state.sale_data.is_private_sale && (
-                      <p>CURRENT ACTIVE SALE: WHITELIST</p>
+                    {state.sale_data.is_closed && (
+                      <p>THIS SEED ROUND HAS CONCLUDED! CLAIMING WILL BE ENABLED ON THE 8TH (EXACT TIME TO BE DETERMINED)</p>
                     )}
 
-                    {state.sale_data.is_public_sale && (
-                      <p>CURRENT ACTIVE SALE: PUBLIC</p>
+                    {!state.sale_data.is_closed && (
+                      <React.Fragment>
+                        {state.sale_data.is_private_sale && (
+                          <p>CURRENT ACTIVE SALE: WHITELIST</p>
+                        )}
+
+                        {state.sale_data.is_public_sale && (
+                          <p>CURRENT ACTIVE SALE: PUBLIC</p>
+                        )}
+                      </React.Fragment>
                     )}
                   </React.Fragment>
                 )}
@@ -699,34 +713,50 @@ class App extends React.Component {
                         <p>📈 You have contributed the maximum allowed! Stay tuned for our platform launch where you will be able to stake your INDEX and start earning the rewards of decentralized diversification.</p>
                       )}
 
-                      {state.sale_data.is_whitelisted && (
+                      {!state.sale_data.is_closed && (
                         <React.Fragment>
-                          {state.sale_data.is_private_sale && (
-                            <p>Welcome angel investors and congratulations on attaining a position in this whitelist. You now have the priveledge of being a part of this historic seed round. Join in the revolution of decentralized diversification with Index DAO.</p>
-                          )}
-
-                          {state.sale_data.is_public_sale && (
-                            <p>Welcome angel investors and congratulations on being a part of the whitelist. The public sale has now commenced which is open to all those that missed out on a whitelist spot. Thank you for participating and welcome to the revolution of decentralized diversification with Index DAO.</p>
-                          )}
-                        </React.Fragment>
-                      )}
-
-                      {!state.sale_data.is_whitelisted && (
-                        <React.Fragment>
-                          {state.sale_data.is_private_sale && (
+                          {state.sale_data.is_whitelisted && (
                             <React.Fragment>
-                              <p>ℹ Your address does not appear in the whitelist. Please double check that you are connected with the correct account. If you believe this to be a mistake please contact Vanguard or Torque via Discord. Otherwise monitor this page and the Discord server for an announcement when the public sale of INDEX is active.</p>
-                              <p>Welcome colleagues, congratulations on finding your way here. Welcome to the revolution of decentralized diversification.</p>
+                              {state.sale_data.is_private_sale && (
+                                <p>Welcome angel investors and congratulations on attaining a position in this whitelist. You now have the priveledge of being a part of this historic seed round. Join in the revolution of decentralized diversification with Index DAO.</p>
+                              )}
+
+                              {state.sale_data.is_public_sale && (
+                                <p>Welcome angel investors and congratulations on being a part of the whitelist. The public sale has now commenced which is open to all those that missed out on a whitelist spot. Thank you for participating and welcome to the revolution of decentralized diversification with Index DAO.</p>
+                              )}
                             </React.Fragment>
                           )}
 
-                          {state.sale_data.is_public_sale && (
-                            <p>Welcome colleagues, congratulations on finding your way here. The public sale has commenced and you are now able to invest into the revolution of decentralized diversification. Welcome to Index DAO!</p>
+                          {!state.sale_data.is_whitelisted && (
+                            <React.Fragment>
+                              {state.sale_data.is_private_sale && (
+                                <React.Fragment>
+                                  <p>ℹ Your address does not appear in the whitelist. Please double check that you are connected with the correct account. If you believe this to be a mistake please contact Vanguard or Torque via Discord. Otherwise monitor this page and the Discord server for an announcement when the public sale of INDEX is active.</p>
+                                  <p>Welcome colleagues, congratulations on finding your way here. Welcome to the revolution of decentralized diversification.</p>
+                                </React.Fragment>
+                              )}
+
+                              {state.sale_data.is_public_sale && (
+                                <p>Welcome colleagues, congratulations on finding your way here. The public sale has commenced and you are now able to invest into the revolution of decentralized diversification. Welcome to Index DAO!</p>
+                              )}
+                            </React.Fragment>
                           )}
+
+                          <p>📈 INDEX bought from this seed round will be claimable on this page at token launch!</p>
                         </React.Fragment>
                       )}
 
-                      <p>📈 INDEX bought from this seed round will be claimable on this page at token launch!</p>
+                      {state.sale_data.is_closed && (
+                        <React.Fragment>
+                          {state.sale_data.deposited > 0 && (
+                            <p>The Index DAO seed round has now concluded! Thank you for participating colleague. Your investment here is the start of your journey into decentralized diversification. The protocol and liquidity pool will be launched on the 8th (exact time to be determined) after which you will be able to claim your INDEX here and start staking via the dApp.</p>
+                          )}
+
+                          {state.sale_data.deposited === 0 && (
+                            <p>The Index DAO seed round has now concluded! The protocol and liquidity pool will be launched on the 8th (exact time to be determined) after which you will be able to purchase and stake INDEX to gain exposure to decentralized diversification!</p>
+                          )}
+                        </React.Fragment>
+                      )}
                     </React.Fragment>
                   )}
 
