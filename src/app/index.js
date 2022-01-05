@@ -571,7 +571,7 @@ class App extends React.Component {
                   <div className={styles.title}>TOTAL INDEX BOUGHT</div>
                   {state.loading || state.account === undefined ?
                     <Skeleton type="title" /> :
-                    <div className={styles.number}>{Number(Math.floor(state.sale_data.sold)).toLocaleString()}/{Number(state.sale_data.max_sold).toLocaleString()}</div>
+                    <div className={styles.number}>{Number(Math.floor(state.sale_data.sold)).toLocaleString()}{state.sale_data.is_closed ? "" : `/${Number(state.sale_data.max_sold).toLocaleString()}`}</div>
                   }
                 </div>
 
