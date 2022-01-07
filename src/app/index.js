@@ -780,7 +780,7 @@ class App extends React.Component {
                   disabled={!can_claim}
                   onClick={this.claim}
                 >
-                  Claim
+                  Claim aINDEX
                 </button>
 
                 <button
@@ -788,7 +788,7 @@ class App extends React.Component {
                   disabled={state.loading || !state.sale_data.is_claim_period}
                   onClick={this.addIndexToWallet}
                 >
-                  Add INDEX to Wallet
+                  Add aINDEX to Wallet
                 </button>
               </div>
             )}
