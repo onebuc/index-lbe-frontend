@@ -524,7 +524,7 @@ class App extends React.Component {
                 {!state.sale_data.is_claim_period && (
                   <React.Fragment>
                     {state.sale_data.is_closed && (
-                      <p>THIS SEED ROUND HAS CONCLUDED! aINDEX (ALPHA INDEX) WILL BE CLAIMABLE HERE WITHIN THE NEXT FEW DAYS AND WILL BE EXCHANGABLE 1:1 FOR INDEX ON LAUNCH (15TH/16TH)</p>
+                      <p>THIS SEED ROUND HAS CONCLUDED! aINDEX (ALPHA INDEX) WILL BE CLAIMABLE HERE WITHIN THE NEXT FEW DAYS AND WILL BE EXCHANGABLE 1:1 FOR INDEX ON LAUNCH (15TH)</p>
                     )}
 
                     {!state.sale_data.is_closed && (
@@ -749,11 +749,11 @@ class App extends React.Component {
                       {state.sale_data.is_closed && (
                         <React.Fragment>
                           {state.sale_data.deposited > 0 && (
-                            <p>The Index DAO seed round has now concluded! Thank you for participating colleague. Your investment here is the start of your journey into decentralized diversification. aINDEX (alpha INDEX) will be claimable here within the next few days and will be exchangable 1:1 for INDEX on launch (15th/16th). Join our <a href="https://discord.gg/indexdao">Discord</a> for the latest updates regarding the protocol and launch!</p>
+                            <p>The Index DAO seed round has now concluded! Thank you for participating colleague. Your investment here is the start of your journey into decentralized diversification. aINDEX (alpha INDEX) will be claimable here within the next few days and will be exchangable 1:1 for INDEX on launch (15th). Join our <a href="https://discord.gg/indexdao">Discord</a> for the latest updates regarding the protocol and launch!</p>
                           )}
 
                           {state.sale_data.deposited === 0 && (
-                            <p>The Index DAO seed round has now concluded! The protocol and liquidity pool will be launched on the 15th/16th (exact time to be determined) after which you will be able to purchase and stake INDEX to gain exposure to decentralized diversification! Join our <a href="https://discord.gg/indexdao">Discord</a> for the latest updates regarding the protocol and launch!</p>
+                            <p>The Index DAO seed round has now concluded! The protocol and liquidity pool will be launched on the 15th (exact time to be determined) after which you will be able to purchase and stake INDEX to gain exposure to decentralized diversification! Join our <a href="https://discord.gg/indexdao">Discord</a> for the latest updates regarding the protocol and launch!</p>
                           )}
                         </React.Fragment>
                       )}
