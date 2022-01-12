@@ -321,13 +321,13 @@ class App extends React.Component {
     );
   };
 
-  async claim () {
+  async claim() {
     this.sendTransaction(
       {
         to: this.state.sale_data.address,
         data: provider.eth.abi.encodeFunctionSignature("claimINDEX()"),
       },
-      "Claim INDEX",
+      "Claim aINDEX",
     );
   }
 
