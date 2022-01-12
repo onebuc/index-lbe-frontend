@@ -239,6 +239,13 @@
   padding-bottom: 25px;
 }
 
+.claim-alert p {
+  background-color: #d9e6ff;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #6f6cca;
+}
+
 .loader-wrapper {
   position: fixed;
   top: calc(50vh - 40px);

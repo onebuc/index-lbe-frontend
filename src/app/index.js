@@ -761,7 +761,13 @@ class App extends React.Component {
                   )}
 
                   {state.sale_data.is_claim_period && (
-                    <p>📈 Your aINDEX (alpha INDEX) is now claimable! Click the claim button below to receive your aINDEX which will be exchangable 1:1 for INDEX on launch (15th). Join our <a href="https://discord.gg/indexdao">Discord</a> for the latest updates regarding the protocol and launch!</p>
+                    <React.Fragment>
+                      <p>📈 Your aINDEX (alpha INDEX) is now claimable! Click the claim button below to receive your aINDEX which will be exchangable 1:1 for INDEX on launch (15th). Join our <a href="https://discord.gg/indexdao">Discord</a> for the latest updates regarding the protocol and launch!</p>
+
+                      <div className={styles["claim-alert"]}>
+                        <p>Please note: aINDEX is not transferrable and will only be redeemable for INDEX 1:1 on launch (15th).</p>
+                      </div>
+                    </React.Fragment>
                   )}
                 </div>
               )}
