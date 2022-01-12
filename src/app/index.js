@@ -761,7 +761,7 @@ class App extends React.Component {
                   )}
 
                   {state.sale_data.is_claim_period && (
-                    <p>📈 Your INDEX is now claimable! Click the claim button below to receive your INDEX and begin your journey in decentralized diversification!</p>
+                    <p>📈 Your aINDEX is now claimable! Click the claim button below to receive your aINDEX and begin your journey in decentralized diversification!</p>
                   )}
                 </div>
               )}
