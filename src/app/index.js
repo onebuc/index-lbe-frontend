@@ -518,7 +518,7 @@ class App extends React.Component {
             {now >= 1641207600325 && (
               <div className={styles.modal__subtitle}>
                 {state.sale_data.is_claim_period && (
-                  <p>INDEX IS NOW CLAIMABLE</p>
+                  <p>aINDEX IS NOW CLAIMABLE (ALPHA INDEX)</p>
                 )}
 
                 {!state.sale_data.is_claim_period && (
