@@ -761,7 +761,7 @@ class App extends React.Component {
                   )}
 
                   {state.sale_data.is_claim_period && (
-                    <p>📈 Your aINDEX is now claimable! Click the claim button below to receive your aINDEX and begin your journey in decentralized diversification!</p>
+                    <p>📈 Your aINDEX (alpha INDEX) is now claimable! Click the claim button below to receive your aINDEX which will be exchangable 1:1 for INDEX on launch (15th). Join our <a href="https://discord.gg/indexdao">Discord</a> for the latest updates regarding the protocol and launch!!</p>
                   )}
                 </div>
               )}
