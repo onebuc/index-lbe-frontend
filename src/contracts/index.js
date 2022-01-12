@@ -15,7 +15,7 @@ export const contracts_mainnet = {
     balance: 0,
     contract: null,
     decimals: 9,
-    image: "https://www.indexdao.finance/assets/tokens/aindex-token.png",
+    image: "https://www.indexdao.finance/assets/tokens/aindex-256.png",
     symbol: "aINDEX",
   },
   indexsale: {
