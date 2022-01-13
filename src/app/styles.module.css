@@ -150,6 +150,7 @@
 }
 
 .inputs {
+  display: none;
   margin: 25px 0;
 }
 .inputs input {
@@ -196,6 +197,7 @@
 
 .connect-button {
   display: grid;
+  margin-top: 20px;
 }
 
 .buttons {

@@ -642,7 +642,7 @@ class App extends React.Component {
               )}
 
               {state.account !== undefined && (
-                <div className={styles.buttons}>
+                <div className={styles.buttons} style={{ display: "none" }}>
                   <button
                     className="button button--large"
                     disabled={!can_invest || contracts.mim.approved}
