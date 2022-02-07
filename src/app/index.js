@@ -28,7 +28,7 @@ class App extends React.Component {
       initialized_amount: false,
       loading: true,
       sale_data: {},
-      testnet: false,
+      testnet: true,
       transactions: [],
     }
     // Event handlers
@@ -134,7 +134,7 @@ class App extends React.Component {
       });
     } catch (error) {
       console.log(error);
-      toast.error(`Failed to add INDEX to wallet: ${error.message}`, { autoClose: 15000 });
+      toast.error(`Failed to add AMZN to wallet: ${error.message}`, { autoClose: 15000 });
     }
   }
 
@@ -327,7 +327,7 @@ class App extends React.Component {
         to: this.state.sale_data.address,
         data: provider.eth.abi.encodeFunctionSignature("claimINDEX()"),
       },
-      "Claim aINDEX",
+      "Claim aAMZN",
     );
   }
 
@@ -501,7 +501,7 @@ class App extends React.Component {
       <div className={styles.root}>
         <ToastContainer position="bottom-right" />
 
-        <h1>INDEX DAO</h1>
+        <h1>Amazons Network</h1>
 
         <div className={styles["modal-wrapper"]}>
           <div className={styles.modal}>
@@ -512,19 +512,19 @@ class App extends React.Component {
               ) && (
                 <div className={styles["pulse-dot"]}></div>
               )}
-              <h2>Index DAO Seed Round</h2>
+              <h2>Amazons Network Seed Round</h2>
             </div>
 
             {now >= 1641207600325 && (
               <div className={styles.modal__subtitle}>
                 {state.sale_data.is_claim_period && (
-                  <p>aINDEX IS NOW CLAIMABLE (ALPHA INDEX)</p>
+                  <p>aAMZN IS NOW CLAIMABLE (ALPHA AMAZONS)</p>
                 )}
 
                 {!state.sale_data.is_claim_period && (
                   <React.Fragment>
                     {state.sale_data.is_closed && (
-                      <p>THIS SEED ROUND HAS CONCLUDED! aINDEX (ALPHA INDEX) WILL BE CLAIMABLE HERE WITHIN THE NEXT FEW DAYS AND WILL BE EXCHANGABLE 1:1 FOR INDEX ON LAUNCH (15TH)</p>
+                      <p>THIS SEED ROUND HAS CONCLUDED! aAMZN (ALPHA AMAZONS) WILL BE CLAIMABLE HERE WITHIN THE NEXT FEW DAYS AND WILL BE EXCHANGABLE 1:1 FOR AMAZONS ON LAUNCH (TBA)</p>
                     )}
 
                     {!state.sale_data.is_closed && (
@@ -560,7 +560,7 @@ class App extends React.Component {
                 </div>
 
                 <div>
-                  <div className={styles.title}>PRICE PER INDEX</div>
+                  <div className={styles.title}>PRICE PER AMZN</div>
                   {state.loading || state.account === undefined ?
                     <Skeleton type="title" /> :
                     <div className={styles.number}>{state.sale_data.price_in_mim} MIM</div>
@@ -568,7 +568,7 @@ class App extends React.Component {
                 </div>
 
                 <div>
-                  <div className={styles.title}>TOTAL INDEX BOUGHT</div>
+                  <div className={styles.title}>TOTAL AMZN BOUGHT</div>
                   {state.loading || state.account === undefined ?
                     <Skeleton type="title" /> :
                     <div className={styles.number}>{Number(Math.floor(state.sale_data.sold)).toLocaleString()}{state.sale_data.is_closed ? "" : `/${Number(state.sale_data.max_sold).toLocaleString()}`}</div>
@@ -576,7 +576,7 @@ class App extends React.Component {
                 </div>
 
                 <div>
-                  <div className={styles.title}>YOUR INDEX</div>
+                  <div className={styles.title}>YOUR AMZN</div>
                   {state.loading || state.account === undefined ?
                     <Skeleton type="title" /> :
                     <React.Fragment>
@@ -612,7 +612,7 @@ class App extends React.Component {
                 <div className={styles.arrow}>↓</div>
 
                 <div className={styles["input-title"]}>
-                  <span>INDEX YOU WILL RECEIVE</span>
+                  <span>AMZN YOU WILL RECEIVE</span>
                 </div>
 
                 <div className={styles["input-wrapper"]}>
@@ -625,7 +625,7 @@ class App extends React.Component {
                     value={this.state.amount_index}
                   />
 
-                  <span>INDEX</span>
+                  <span>AMZN</span>
                 </div>
               </div>
 
@@ -710,7 +710,7 @@ class App extends React.Component {
                           state.sale_data.deposited === state.sale_data.max_public_sale_per_account
                         )
                       ) && (
-                        <p>📈 You have contributed the maximum allowed! Stay tuned for our platform launch where you will be able to stake your INDEX and start earning the rewards of decentralized diversification.</p>
+                        <p>📈 You have contributed the maximum allowed! Stay tuned for our platform launch where you will be able to stake your AMAZONS and start earning the rewards of decentralized diversification.</p>
                       )}
 
                       {!state.sale_data.is_closed && (
@@ -718,11 +718,11 @@ class App extends React.Component {
                           {state.sale_data.is_whitelisted && (
                             <React.Fragment>
                               {state.sale_data.is_private_sale && (
-                                <p>Welcome angel investors and congratulations on attaining a position in this whitelist. You now have the priveledge of being a part of this historic seed round. Join in the revolution of decentralized diversification with Index DAO.</p>
+                                <p>Welcome angel investors and congratulations on attaining a position in this whitelist. You now have the priveledge of being a part of this historic seed round. Join in the revolution of decentralized diversification with Amazons Network.</p>
                               )}
 
                               {state.sale_data.is_public_sale && (
-                                <p>Welcome angel investors and congratulations on being a part of the whitelist. The public sale has now commenced which is open to all those that missed out on a whitelist spot. Thank you for participating and welcome to the revolution of decentralized diversification with Index DAO.</p>
+                                <p>Welcome angel investors and congratulations on being a part of the whitelist. The public sale has now commenced which is open to all those that missed out on a whitelist spot. Thank you for participating and welcome to the revolution of decentralized diversification with Amazons Network.</p>
                               )}
                             </React.Fragment>
                           )}
@@ -731,29 +731,29 @@ class App extends React.Component {
                             <React.Fragment>
                               {state.sale_data.is_private_sale && (
                                 <React.Fragment>
-                                  <p>ℹ Your address does not appear in the whitelist. Please double check that you are connected with the correct account. If you believe this to be a mistake please contact Vanguard or Torque via Discord. Otherwise monitor this page and the Discord server for an announcement when the public sale of INDEX is active.</p>
+                                  <p>ℹ Your address does not appear in the whitelist. Please double check that you are connected with the correct account. If you believe this to be a mistake please contact Vanguard or Torque via Discord. Otherwise monitor this page and the Discord server for an announcement when the public sale of AMZN is active.</p>
                                   <p>Welcome colleagues, congratulations on finding your way here. Welcome to the revolution of decentralized diversification.</p>
                                 </React.Fragment>
                               )}
 
                               {state.sale_data.is_public_sale && (
-                                <p>Welcome colleagues, congratulations on finding your way here. The public sale has commenced and you are now able to invest into the revolution of decentralized diversification. Welcome to Index DAO!</p>
+                                <p>Welcome colleagues, congratulations on finding your way here. The public sale has commenced and you are now able to invest into the revolution of decentralized diversification. Welcome to Amazons Network!</p>
                               )}
                             </React.Fragment>
                           )}
 
-                          <p>📈 INDEX bought from this seed round will be claimable on this page at token launch!</p>
+                          <p>📈 AMZN bought from this seed round will be claimable on this page at token launch!</p>
                         </React.Fragment>
                       )}
 
                       {state.sale_data.is_closed && (
                         <React.Fragment>
                           {state.sale_data.deposited > 0 && (
-                            <p>The Index DAO seed round has now concluded! Thank you for participating colleague. Your investment here is the start of your journey into decentralized diversification. aINDEX (alpha INDEX) will be claimable here within the next few days and will be exchangable 1:1 for INDEX on launch (15th). Join our <a href="https://discord.gg/indexdao">Discord</a> for the latest updates regarding the protocol and launch!</p>
+                            <p>The Amazons Network seed round has now concluded! Thank you for participating colleague. Your investment here is the start of your journey into decentralized diversification. aAMZN (alpha AMZN) will be claimable here within the next few days and will be exchangable 1:1 for AMZN on launch (15th). Join our <a href="https://discord.gg/indexdao">Discord</a> for the latest updates regarding the protocol and launch!</p>
                           )}
 
                           {state.sale_data.deposited === 0 && (
-                            <p>The Index DAO seed round has now concluded! The protocol and liquidity pool will be launched on the 15th (exact time to be determined) after which you will be able to purchase and stake INDEX to gain exposure to decentralized diversification! Join our <a href="https://discord.gg/indexdao">Discord</a> for the latest updates regarding the protocol and launch!</p>
+                            <p>The Amazons Network seed round has now concluded! The protocol and liquidity pool will be launched on the 15th (exact time to be determined) after which you will be able to purchase and stake AMZN to gain exposure to decentralized diversification! Join our <a href="https://discord.gg/indexdao">Discord</a> for the latest updates regarding the protocol and launch!</p>
                           )}
                         </React.Fragment>
                       )}
@@ -762,10 +762,10 @@ class App extends React.Component {
 
                   {state.sale_data.is_claim_period && (
                     <React.Fragment>
-                      <p>📈 Your aINDEX (alpha INDEX) is now claimable! Click the claim button below to receive your aINDEX which will be exchangable 1:1 for INDEX on launch (15th). Join our <a href="https://discord.gg/indexdao">Discord</a> for the latest updates regarding the protocol and launch!</p>
+                      <p>📈 Your aAMZN (alpha AMZN) is now claimable! Click the claim button below to receive your aAMZN which will be exchangable 1:1 for AMZN on launch (15th). Join our <a href="https://discord.gg/indexdao">Discord</a> for the latest updates regarding the protocol and launch!</p>
 
                       <div className={styles["claim-alert"]}>
-                        <p>Please note: aINDEX is not transferrable and will only be redeemable for INDEX 1:1 on launch (15th).</p>
+                        <p>Please note: aAMZN is not transferrable and will only be redeemable for AMZN 1:1 on launch (15th).</p>
                       </div>
                     </React.Fragment>
                   )}
@@ -774,7 +774,7 @@ class App extends React.Component {
 
               {now < 1641207600325 && (
                 <div className={styles.notes}>
-                  <p>The INDEX sale will commence at 11:00 UTC! All whitelist address will be added then.</p>
+                  <p>The AMZN sale will commence at 11:00 UTC! All whitelist address will be added then.</p>
                 </div>
               )}
             </div>
@@ -786,7 +786,7 @@ class App extends React.Component {
                   disabled={!can_claim}
                   onClick={this.claim}
                 >
-                  Claim aINDEX
+                  Claim aAMZN
                 </button>
 
                 <button
@@ -794,7 +794,7 @@ class App extends React.Component {
                   disabled={state.loading || !state.sale_data.is_claim_period}
                   onClick={this.addIndexToWallet}
                 >
-                  Add aINDEX to Wallet
+                  Add aAMZN to Wallet
                 </button>
               </div>
             )}
